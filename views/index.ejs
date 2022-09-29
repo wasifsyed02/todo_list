@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <title>Todo List</title>
+</head>
+
+<body>
+        <div class="container p-5 mt-5">
+            <div class="row justify-content-center pb-2">
+                <div class="col-sm-6">
+                    <form action="/add" method="post">
+                        <input type="text" name="task" class="form-control" id="task" placeholder="Add Task.">
+                </div>
+                <div class="col-sm-1">
+                    <button  value="<%= listName %> " name="listName" type="submit" class="btn btn-primary"  type="submit" >add</button>
+                    </form>
+                </div>
+            </div>
+            <% items.forEach(element=> {%>
+                <div class="row justify-content-center pb-1">
+                    <div class="col-sm-5">
+                        <div class="alert alert-primary" role="alert">
+                            <%= element.name %>
+                        </div>
+
+                    </div>
+
+                    <div class="col-sm-1">
+                        <form method="post" action="/delete"> <input type="hidden" name="id" value="<%= element._id %>"/>
+                            <input type="hidden" name="listName" value="<%= listName %>"/>
+                            <button type="submit" class="btn btn-danger  py-3 px-3"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-archive-fill" viewBox="0 0 16 16"></form>
+                        <path
+                            d="M12.643 15C13.979 15 15 13.845 15 12.5V5H1v7.5C1 13.845 2.021 15 3.357 15h9.286zM5.5 7h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1zM.8 1a.8.8 0 0 0-.8.8V3a.8.8 0 0 0 .8.8h14.4A.8.8 0 0 0 16 3V1.8a.8.8 0 0 0-.8-.8H.8z" />
+                        </svg></button>
+                    </div>
+                    <div class="col-sm-1 ">
+                        <form method="put" action="/complete">
+                            <button type="submit" class="btn btn-success  py-3 px-3"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-calendar2-check-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zm9.954 3H2.545c-.3 0-.545.224-.545.5v1c0 .276.244.5.545.5h10.91c.3 0 .545-.224.545-.5v-1c0-.276-.244-.5-.546-.5zm-2.6 5.854a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
+                                </svg></button>
+                        </form>
+                    </div>
+
+
+                </div>
+                <% }); %>
+
+        </div>
+</body>
+
+</html>
