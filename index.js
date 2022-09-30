@@ -19,7 +19,7 @@ app.use(
   express.static(path.join(__dirname, "node_modules/jquery/dist"))
 );
 //connecting to monogdb
-mongoose.connect("mongodb://localhost:27017/todo_lists_db");
+mongoose.connect("mongodb+srv://wasifsyed02:simnani123@cluster0.ahbuarc.mongodb.net/todo_lists_db");
 
 const ItemSchema = new mongoose.Schema({
   name: String,
@@ -100,7 +100,7 @@ app.get("/:customerName", function (req, res) {
   Lists.findOne({ name: customerName }, function (err, result) {
     if (!err) {
       if (!result) {
-        const list = new List({ name: customerName, items: [i1, i2, i3] });
+        const list = new Lists({ name: customerName, items: [i1, i2, i3] });
         list.save();
         res.render('index',{listName:customerName,items:list.items})
       }
@@ -111,6 +111,11 @@ app.get("/:customerName", function (req, res) {
     }
   });
 });
-app.listen(3000, function () {
+let port=process.env.PORT;
+if(port==null || port=="")
+{
+  port=3000;
+}
+app.listen(port, function () {
   console.log("server started at port 8000.");
 });
