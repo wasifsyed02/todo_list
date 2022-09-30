@@ -60,7 +60,7 @@ app.post("/add", urlencodedParses, function (req, res) {
   const item = new Item({ name: req.body.task });
   if(listName=="root"){
     item.save()
-    res.redirect('/'+listName)
+    res.redirect('/')
   }
   
   else{
